@@ -1,16 +1,16 @@
-# Morning claim stack
+# Research digests
 
-Static morning research terminal — **Sovereign · Claims · Migration · Inventory**.
+Static morning research terminal — **SpaceX · Scout · YCC · Capital Stack**.
 
 **Live hub:** https://kaydeep0.github.io/ibkr-digests/
 
 | Route | Dossier |
 |-------|---------|
-| [/](https://kaydeep0.github.io/ibkr-digests/) | Hub (claim stack → equity expression) |
-| [/ycc/](https://kaydeep0.github.io/ibkr-digests/ycc/) | Sovereign · Three Clocks |
-| [/capital/](https://kaydeep0.github.io/ibkr-digests/capital/) | Claims · All-in cost |
-| [/scout/](https://kaydeep0.github.io/ibkr-digests/scout/) | Migration · Quiet pipes |
-| [/spacex/](https://kaydeep0.github.io/ibkr-digests/spacex/) | Inventory · SPCX scarcity |
+| [/](https://kaydeep0.github.io/ibkr-digests/) | Hub dashboard |
+| [/spacex/](https://kaydeep0.github.io/ibkr-digests/spacex/) | SpaceX · Musk dossier digest |
+| [/scout/](https://kaydeep0.github.io/ibkr-digests/scout/) | Scout · cheap / quiet names + GRAS |
+| [/ycc/](https://kaydeep0.github.io/ibkr-digests/ycc/) | YCC · sovereign financing pressure |
+| [/capital/](https://kaydeep0.github.io/ibkr-digests/capital/) | Capital Stack · price of claims |
 
 Dated archives: `/{slot}/YYYY-MM-DD/`.
 
@@ -24,7 +24,6 @@ Dated archives: `/{slot}/YYYY-MM-DD/`.
 
 ## How Pages is served
 
-GitHub → Settings → Pages → Source **GitHub Actions** (workflow in this repo),
-or Deploy from branch `main` / root.
+GitHub → Settings → Pages → Source **GitHub Actions**.
 
-Content is overwritten daily by the private generator (`publish_digest_pages.py` → `push_digests_site.sh`).
+Content is overwritten by the private generator (`publish_digest_pages.py` → `push_digests_site.sh`).

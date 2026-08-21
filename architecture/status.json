@@ -1,0 +1,40 @@
+{
+  "asof": "2026-08-21",
+  "retrieved_at": "2026-08-21T16:34:55Z",
+  "hub_wired": true,
+  "batch": 1,
+  "admitted": [
+    "ust_bills_outstanding",
+    "ust_marketable_debt",
+    "ust_bill_share",
+    "ibkr_usdc_funding_rail",
+    "ibkr_usdc_auto_convert_to_usd",
+    "genius_implementation_rule_state",
+    "usdt_reserve_treasury_bills",
+    "usdt_reserve_report_asof",
+    "fed_ust_holdings",
+    "fo_custody_h41",
+    "usdc_circulating_supply",
+    "cash_compliance_milestone",
+    "genius_statute_legal_state",
+    "genius_foreign_registration",
+    "repo_clearing",
+    "gold_reserve_custody"
+  ],
+  "withheld_count": 14,
+  "path": "architecture/",
+  "source": "data/architecture/batch1/batch1_results.json",
+  "hub": {
+    "today_state": "Dollar rails \u2014 observation system frozen; cell changes are the signal.",
+    "metrics": [
+      "Bills / marketable 22.22%",
+      "USDT Treasury bills $114.96B \u00b7 Jun 30",
+      "GENIUS statute ENACTED \u00b7 impl PROPOSED_RULE",
+      "No architecture changes today.",
+      "Evidence gaps 8 withheld"
+    ]
+  },
+  "no_scores": true,
+  "ontology_frozen": true,
+  "cell_change_log": "/Users/kiran/Desktop/ibkr/data/architecture/cell_change_log"
+}

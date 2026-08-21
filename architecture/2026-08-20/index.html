@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dollar Rails · Current Verified State</title>
+<meta name="description" content="Treasury collateral, digital-dollar reserves, regulated distribution rails, and implementation milestones verified from primary sources."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet"/>
+<style>body{margin:0;background:#eef2f0;}</style>
+</head><body>
+
+<style>
+  .arch-b1 {
+    --ink:#14212b; --muted:#5c6b76; --line:#d5dde3; --paper:#f3f6f4; --panel:#fff;
+    --accent:#0d5c63; --accent-soft:#d7ebea; --warn:#8a5a12; --gap:#7f1d1d;
+    --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+    --sans:"Source Serif 4","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --ui:"IBM Plex Sans","Segoe UI",sans-serif;
+    max-width:920px; margin:0 auto; padding:8px 12px 40px;
+    font-family:var(--ui); color:var(--ink); font-size:15px; line-height:1.5;
+  }
+  .arch-b1 .banner {
+    background:linear-gradient(135deg,#0f2a32 0%,#164954 55%,#0d5c63 100%);
+    color:#f4faf9; border-radius:4px; padding:28px 24px; margin:0 0 18px;
+  }
+  .arch-b1 .kicker {
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#9fd0d4;
+  }
+  .arch-b1 h1 {
+    font-family:var(--sans); font-weight:600; font-size:clamp(26px,4vw,38px);
+    margin:10px 0 8px; letter-spacing:-0.02em;
+  }
+  .arch-b1 .banner p { margin:0; max-width:42rem; color:#d5e8e9; font-size:15px; }
+  .arch-b1 .meta { margin-top:14px; font-family:var(--mono); font-size:11px; color:#9fb4b8; }
+  .arch-b1 .daily {
+    border-left:3px solid var(--accent); background:var(--accent-soft);
+    padding:12px 14px; margin:0 0 18px; font-size:14px; color:#1d3d42;
+  }
+  .arch-b1 .daily strong { color:#0f2a32; }
+  .arch-b1 .watch-strip {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px;
+    margin:0 0 16px; padding:12px 14px; background:#fff; border:1px solid var(--line); border-radius:4px;
+  }
+  .arch-b1 .watch-strip .wk {
+    display:block; font-family:var(--mono); font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:4px;
+  }
+  .arch-b1 .watch-strip .wv { font-size:14px; font-weight:600; color:#0f2a32; }
+  .arch-b1 .watch-strip .wv.incomplete { color:var(--warn); }
+  .arch-b1 .watch-strip .wv.changed { color:var(--accent); }
+  .arch-b1 section {
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:18px 18px 12px; margin:0 0 14px;
+  }
+  .arch-b1 section h2 {
+    font-family:var(--sans); font-size:20px; margin:0 0 4px; letter-spacing:-0.01em;
+  }
+  .arch-b1 .sub { margin:0 0 12px; color:var(--muted); font-size:13px; }
+  .arch-b1 .row {
+    padding:10px 0; border-top:1px solid #e8eef0;
+  }
+  .arch-b1 .row:first-of-type { border-top:none; }
+  .arch-b1 .lab { font-size:13px; color:var(--muted); }
+  .arch-b1 .val {
+    font-family:var(--sans); font-size:22px; font-weight:600; margin:2px 0 4px; letter-spacing:-0.01em;
+  }
+  .arch-b1 .row.gap .val { color:var(--gap); font-size:18px; }
+  .arch-b1 .meta-line { font-family:var(--mono); font-size:11px; color:#64748b; }
+  .arch-b1 .note-line { font-size:12px; color:var(--warn); margin-top:4px; }
+  .arch-b1 .stale {
+    font-family:var(--mono); font-size:10px; background:#fef3c7; color:#92400e;
+    padding:2px 6px; border-radius:3px; margin-left:6px; vertical-align:middle;
+  }
+  .arch-b1 .clocks {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin:8px 0 12px;
+  }
+  .arch-b1 .clock {
+    background:#f7faf9; border:1px solid var(--line); border-radius:3px; padding:8px 10px;
+  }
+  .arch-b1 .ck { display:block; font-family:var(--mono); font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  .arch-b1 .cv { font-size:13px; font-weight:600; }
+  .arch-b1 details.prov { margin-top:6px; font-size:12px; color:var(--muted); }
+  .arch-b1 details.prov summary { cursor:pointer; color:var(--accent); font-family:var(--mono); font-size:11px; }
+  .arch-b1 details.prov ul { margin:8px 0 0; padding-left:16px; }
+  .arch-b1 details.prov .pk { font-family:var(--mono); color:#334155; }
+  .arch-b1 .foot {
+    font-size:12px; color:var(--muted); margin-top:8px; padding:10px 0;
+  }
+  
+  .arch-b1 .ch-diagram {
+    font-family:var(--mono); font-size:11px; line-height:1.45; background:#f7faf9;
+    border:1px solid var(--line); border-radius:3px; padding:12px 14px; overflow-x:auto;
+    color:#1d3d42; white-space:pre;
+  }
+  .arch-b1 .ch-levels {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:6px; margin:8px 0;
+  }
+  .arch-b1 .ch-lk {
+    display:block; font-family:var(--mono); font-size:9px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:2px;
+  }
+  .arch-b1 .ch-chip {
+    display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600;
+    padding:2px 8px; border-radius:3px; border:1px solid var(--line);
+  }
+  .arch-b1 .ch-true { background:#dcfce7; color:#14532d; border-color:#86efac; }
+  .arch-b1 .ch-false { background:#fee2e2; color:#7f1d1d; border-color:#fca5a5; }
+  .arch-b1 .ch-nd {
+    background:#f1f5f9; color:#334155; border-color:#cbd5e1;
+  }
+  .arch-b1 .ch-partial { background:#ffedd5; color:#9a3412; border-color:#fdba74; }
+  .arch-b1 .ch-nd-banner {
+    margin:12px 0 8px; padding:10px 12px; background:#f8fafc; border-left:3px solid #64748b;
+    font-size:13px; color:#334155;
+  }
+  .arch-b1 .ch-issuer-nd .val { font-size:18px; }
+  .arch-b1 .ch-matrix-wrap { overflow-x:auto; margin:8px 0 4px; }
+  .arch-b1 .ch-matrix {
+    width:100%; border-collapse:collapse; font-size:12px; min-width:640px;
+  }
+  .arch-b1 .ch-matrix th, .arch-b1 .ch-matrix td {
+    border:1px solid var(--line); padding:8px; vertical-align:top; text-align:left;
+  }
+  .arch-b1 .ch-matrix thead th { background:#f7faf9; }
+  .arch-b1 .ch-th-priv { font-family:var(--mono); font-size:10px; }
+  .arch-b1 .ch-th-reg { font-size:10px; color:var(--muted); margin-top:2px; }
+  .arch-b1 .ch-row-lab { font-weight:600; white-space:nowrap; background:#fafcfb; }
+  .arch-b1 .ch-td.nd { background:#f8fafc; }
+  .arch-b1 .ch-cell-nd { font-family:var(--mono); font-weight:600; color:#7f1d1d; }
+  .arch-b1 .ch-mini { font-family:var(--mono); font-size:10px; color:#64748b; margin-top:4px; }
+  .arch-b1 .ch-flow {
+    display:flex; flex-direction:column; align-items:flex-start; gap:2px; margin:8px 0 12px;
+  }
+  .arch-b1 .ch-node {
+    font-family:var(--mono); font-size:12px; background:#0d5c63; color:#f4faf9;
+    padding:6px 12px; border-radius:3px;
+  }
+  .arch-b1 .ch-arrow { font-family:var(--mono); color:var(--accent); padding-left:18px; }
+  .arch-b1 .ch-h3 {
+    font-family:var(--sans); font-size:16px; margin:16px 0 6px; letter-spacing:-0.01em;
+  }
+
+</style>
+<div class="arch-b1">
+  <div class="banner">
+    <div class="kicker">Architecture · Claim Hierarchy</div>
+    <h1>Dollar Rails · Current Verified State</h1>
+    <p>Hierarchy of claims and privileges across Treasuries, permitted reserves, private dollar liabilities, and conversion — plus sovereign BTC/gold as a separate channel. Missing edges are part of the result.</p>
+    <div class="meta">asof 2026-08-20 · 22 admitted · 8 withheld · no system-wide score</div>
+  </div>
+
+  
+  <div class="watch-strip" aria-label="Architecture watch">
+    <div><span class="wk">Last check</span><span class="wv">Aug 20, 2026 11:08 PM PT</span></div>
+    <div><span class="wk">Last verified architecture change</span><span class="wv">Aug 20, 2026</span></div>
+    <div><span class="wk">Watch status</span><span class="wv ">WATCHING</span></div>
+  </div>
+
+
+  <div class="daily">
+    <strong>Daily read:</strong> Verified primary-source observations currently show Treasury bills at 22.22% of marketable debt based on 2026-07-31 MSPD data, Fed SOMA Treasury holdings at $4.54T as of 2026-08-19, USDT reporting $114.96B of U.S. Treasury Bills as of 2026-06-30, USDC circulating supply at $72.77B, verified USDC funding and automatic conversion at IBKR, GENIUS statute ENACTED, GENIUS implementation in proposed-rule state, final Treasury cash- and repo-clearing rules with compliance timing tracked separately, Strategic Bitcoin Reserve legal state EXECUTIVE_ORDER_ACTIVE, and official gold stock at 261,498,926.241 oz. No architecture changes today. Claim Hierarchy — claims with admitted legal privileges: UST_BILLS under GENIUS_ACT; BTC under EO_14233; GOLD under US_OFFICIAL_GOLD_RESERVE; PERMITTED_RESERVE_SET under GENIUS_ACT; explicit exclusions: BTC excluded from GENIUS payment-stablecoin reserves; operational privileges at IBKR: BROKER_FUNDING, AUTOMATIC_USD_CONVERSION; verified conversion path USDC → IBKR → USD; observed utilization unchanged at N/D across privilege cells; issuer GENIUS_STATUS remains N/D for USDT/USDC/PYUSD/RLUSD/USDG (no primary permit disclosure).
+  </div>
+
+  
+  <section id="claim-hierarchy">
+    <h2>1 · Claim Hierarchy</h2>
+    <p class="sub">Claims → Privileges → Conversion → Utilization · admitted observations only · no scores</p>
+    
+<pre class="ch-diagram" aria-label="Claim hierarchy diagram">SOVEREIGN CLAIMS
+Treasuries
+    ↓
+PERMITTED RESERVE ASSETS
+cash · T-bills · repo · government MMFs
+    ↓
+PRIVATE DOLLAR LIABILITIES
+USDC · USDT · others
+    ↓
+INSTITUTIONAL CONVERSION
+USDC → IBKR → USD
+    ↓
+DISTRIBUTION / SETTLEMENT
+brokers · custodians · clearing · digital rails
+
+
+SEPARATE SOVEREIGN-ASSET CHANNEL
+
+Gold ──→ U.S. sovereign reserve
+BTC  ──→ U.S. sovereign reserve
+
+BTC ──X── GENIUS reserve asset
+Gold ──X── GENIUS reserve asset
+
+BTC → Treasury financing      N/D
+BTC → stablecoin collateral   N/D</pre>
+<p class="note-line">Missing edges are research results — not decorative gaps to fill.</p>
+
+
+    <h3 class="ch-h3">1a · Dollar Privilege Map</h3>
+    <p class="sub">GENIUS reserve-set rules + IBKR USDC operational privileges. Levels kept distinct.</p>
+    <div class="row ok">
+  <div class="lab">GENIUS permitted reserve categories</div>
+  <div class="val">PERMITTED_RESERVE_SET</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege PAYMENT_STABLECOIN_RESERVE_CATEGORIES</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · genius_permitted_reserve_categories</summary><ul><li><span class='pk'>asset_or_claim</span> PERMITTED_RESERVE_SET</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE_CATEGORIES</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 4735d02c14a5fc0bbfb082133d0efaea72741a3f20128dff54c4f62612cdb00d</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">GENIUS non-permitted stablecoin restrictions</div>
+  <div class="val">NON_PERMITTED_PAYMENT_STABLECOIN</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege CASH_EQUIVALENT_MARGIN_WHOLESALE_SETTLEMENT</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-false' title='LEGAL'>FALSE</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · genius_nonpermitted_privilege_restrictions</summary><ul><li><span class='pk'>asset_or_claim</span> NON_PERMITTED_PAYMENT_STABLECOIN</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> CASH_EQUIVALENT_MARGIN_WHOLESALE_SETTLEMENT</li><li><span class='pk'>legal_eligibility</span> FALSE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> statute_prohibits_cash_equivalent_margin_wholesale_for_non_permitted_issuers</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 6bc2a921a06da4dcdf4649262f728750305c13c3cde77998ada35a76f76c1a8f</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">UST bills · GENIUS reserve eligibility</div>
+  <div class="val">UST_BILLS</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege PAYMENT_STABLECOIN_RESERVE</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · ust_bills_genius_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> UST_BILLS</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> b649546b01b6b8a4ec1d98801e0cbf61ec228bbad92cc1038ae0121d1bd26c12</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">USDC @ IBKR · funding available</div>
+  <div class="val">USDC</div>
+  <div class="meta-line">regime IBKR_PRODUCT_DISCLOSURE · privilege BROKER_FUNDING</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · ibkr_usdc_funding_rail</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> BROKER_FUNDING</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">USDC @ IBKR · automatic USD conversion</div>
+  <div class="val">USDC</div>
+  <div class="meta-line">regime IBKR_PRODUCT_DISCLOSURE · privilege AUTOMATIC_USD_CONVERSION</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · ibkr_usdc_auto_convert_to_usd</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> AUTOMATIC_USD_CONVERSION</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="ch-nd-banner">
+  <strong>Issuer GENIUS_STATUS</strong> — unresolved.
+  The Act defines a regulatory regime; it does not by itself identify which issuer
+  currently occupies which status. Absence of primary permit disclosure = <em>N/D</em>
+  (never FALSE).
+</div><div class="row gap ch-issuer-nd">
+  <div class="lab">USDT · GENIUS_STATUS</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege GENIUS_STATUS · no primary permit disclosure</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class="prov"><summary>Evidence / provenance · usdt_genius_status</summary>
+  <ul>
+    <li><span class="pk">disposition</span> N/D</li>
+    <li><span class="pk">reason</span> no_primary_permit_disclosure</li>
+    <li><span class="pk">note</span> Market presence is not permission. Do not infer from circulating supply.</li>
+  </ul></details>
+</div><div class="row gap ch-issuer-nd">
+  <div class="lab">USDC · GENIUS_STATUS</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege GENIUS_STATUS · no primary permit disclosure</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class="prov"><summary>Evidence / provenance · usdc_genius_status</summary>
+  <ul>
+    <li><span class="pk">disposition</span> N/D</li>
+    <li><span class="pk">reason</span> no_primary_permit_disclosure</li>
+    <li><span class="pk">note</span> Market presence is not permission. Do not infer from circulating supply.</li>
+  </ul></details>
+</div><div class="row gap ch-issuer-nd">
+  <div class="lab">PYUSD · GENIUS_STATUS</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege GENIUS_STATUS · no primary permit disclosure</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class="prov"><summary>Evidence / provenance · pyusd_genius_status</summary>
+  <ul>
+    <li><span class="pk">disposition</span> N/D</li>
+    <li><span class="pk">reason</span> no_primary_permit_disclosure</li>
+    <li><span class="pk">note</span> Market presence is not permission. Do not infer from circulating supply.</li>
+  </ul></details>
+</div><div class="row gap ch-issuer-nd">
+  <div class="lab">RLUSD · GENIUS_STATUS</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege GENIUS_STATUS · no primary permit disclosure</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class="prov"><summary>Evidence / provenance · rlusd_genius_status</summary>
+  <ul>
+    <li><span class="pk">disposition</span> N/D</li>
+    <li><span class="pk">reason</span> no_primary_permit_disclosure</li>
+    <li><span class="pk">note</span> Market presence is not permission. Do not infer from circulating supply.</li>
+  </ul></details>
+</div><div class="row gap ch-issuer-nd">
+  <div class="lab">USDG · GENIUS_STATUS</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">regime GENIUS_ACT · privilege GENIUS_STATUS · no primary permit disclosure</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class="prov"><summary>Evidence / provenance · usdg_genius_status</summary>
+  <ul>
+    <li><span class="pk">disposition</span> N/D</li>
+    <li><span class="pk">reason</span> no_primary_permit_disclosure</li>
+    <li><span class="pk">note</span> Market presence is not permission. Do not infer from circulating supply.</li>
+  </ul></details>
+</div>
+
+    <h3 class="ch-h3">1b · Collateral / Reserve Privilege Matrix</h3>
+    <p class="sub">Columns are only privileges represented by admitted observations. Regime shown per cell.</p>
+    <div class='ch-matrix-wrap'><table class='ch-matrix'><thead><tr><th scope='col'>Asset</th><th scope='col'><div class='ch-th-priv'>PAYMENT_STABLECOIN_RESERVE</div><div class='ch-th-reg'>GENIUS_ACT</div></th><th scope='col'><div class='ch-th-priv'>US_SOVEREIGN_RESERVE</div><div class='ch-th-reg'>EO_14233</div></th><th scope='col'><div class='ch-th-priv'>US_SOVEREIGN_RESERVE</div><div class='ch-th-reg'>US_OFFICIAL_GOLD_RESERVE</div></th></tr></thead><tbody><tr><th scope='row' class='ch-row-lab'>Cash</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_cash_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> CASH</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 4735d02c14a5fc0bbfb082133d0efaea72741a3f20128dff54c4f62612cdb00d</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td></tr><tr><th scope='row' class='ch-row-lab'>U.S. Treasury Bills</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_ust_bills_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> UST_BILLS</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> b649546b01b6b8a4ec1d98801e0cbf61ec228bbad92cc1038ae0121d1bd26c12</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td></tr><tr><th scope='row' class='ch-row-lab'>U.S. Treasury Repo</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_ust_repo_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> UST_REPO</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 4735d02c14a5fc0bbfb082133d0efaea72741a3f20128dff54c4f62612cdb00d</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td></tr><tr><th scope='row' class='ch-row-lab'>Government MMFs</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_gov_mmf_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> GOV_MMF</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 4735d02c14a5fc0bbfb082133d0efaea72741a3f20128dff54c4f62612cdb00d</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td></tr><tr><th scope='row' class='ch-row-lab'>Gold</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-false' title='LEGAL'>FALSE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_gold_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> GOLD</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> FALSE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> closed_exclusive_permitted_reserve_category_enumeration_excludes_gold</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 4735d02c14a5fc0bbfb082133d0efaea72741a3f20128dff54c4f62612cdb00d</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime US_OFFICIAL_GOLD_RESERVE</div><details class='prov'><summary>Evidence / provenance · matrix_gold_us_official_gold_reserve_us_sovereign_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> GOLD</li><li><span class='pk'>regime</span> US_OFFICIAL_GOLD_RESERVE</li><li><span class='pk'>privilege</span> US_SOVEREIGN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://fiscal.treasury.gov/resources/gold-report'>https://fiscal.treasury.gov/resources/gold-report</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details></td></tr><tr><th scope='row' class='ch-row-lab'>Bitcoin</th><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-false' title='LEGAL'>FALSE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime GENIUS_ACT</div><details class='prov'><summary>Evidence / provenance · matrix_btc_genius_act_payment_stablecoin_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> BTC</li><li><span class='pk'>regime</span> GENIUS_ACT</li><li><span class='pk'>privilege</span> PAYMENT_STABLECOIN_RESERVE</li><li><span class='pk'>legal_eligibility</span> FALSE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> closed_exclusive_permitted_reserve_category_enumeration_excludes_btc</li><li><span class='pk'>granting_entity</span> U.S. Congress</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm'>https://www.congress.gov/119/bills/s1582/BILLS-119s1582enr.htm</a></li><li><span class='pk'>source_document_hash</span> 4d967fbba3144c45ff725396ec3f1ea5d9b51f35cbc9f13a573fb4c620c11705</li><li><span class='pk'>observation_fingerprint</span> 7a4e554c598f19673d49b7f361e927da38d6d136c84dce46b01962669c51516b</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td ok'><div class='ch-cell-main'><span class='ch-chip ch-true' title='LEGAL'>TRUE</span></div><div class='ch-mini'>ops N/D · util N/D</div><div class='ch-mini'>regime EO_14233</div><details class='prov'><summary>Evidence / provenance · matrix_btc_eo_14233_us_sovereign_reserve</summary><ul><li><span class='pk'>asset_or_claim</span> BTC</li><li><span class='pk'>regime</span> EO_14233</li><li><span class='pk'>privilege</span> US_SOVEREIGN_RESERVE</li><li><span class='pk'>legal_eligibility</span> TRUE</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Executive Office of the President / Federal Register</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt'>https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt</a></li><li><span class='pk'>source_document_hash</span> 35a098715939e009d0c33db7d716523c71baaa5fd2262aebe9f8bb6b5e426381</li><li><span class='pk'>observation_fingerprint</span> 612019ce9f3537f56dff87cf5166b9f7dac31f96a820d5dc7c2a7b57051400ac</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 1</li></ul></details></td><td class='ch-td nd'><div class='ch-cell-nd'>N/D</div><div class='ch-mini'>no admitted observation</div></td></tr></tbody></table></div><p class='note-line'>BTC/GENIUS FALSE and BTC/EO_14233 TRUE are not contradictions — different granting regimes. Same for Gold/GENIUS vs Gold/U.S. official reserve. Empty cells are N/D, never FALSE.</p>
+
+    <h3 class="ch-h3">1c · Conversion Graph / Friction</h3>
+    <p class="sub">Admitted USDC → IBKR → USD edge only.</p>
+    
+<div class="ch-flow" aria-label="USDC to USD conversion path">
+  <div class="ch-node">USDC</div>
+  <div class="ch-arrow">↓</div>
+  <div class="ch-node">IBKR funding</div>
+  <div class="ch-arrow">↓</div>
+  <div class="ch-node">automatic conversion</div>
+  <div class="ch-arrow">↓</div>
+  <div class="ch-node">USD</div>
+</div>
+<p class="note-line">Only this admitted edge is drawn. No BTC→UST / BTC→stablecoin / BTC→broker collateral edges.</p>
+<div class="row ok">
+  <div class="lab">supported</div>
+  <div class="val">TRUE</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_supported</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_SUPPORTED</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">funding_available</div>
+  <div class="val">TRUE</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_funding_available</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_FUNDING_AVAILABLE</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">automatic_conversion</div>
+  <div class="val">TRUE</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_automatic_conversion</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_AUTOMATIC_CONVERSION</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">hours</div>
+  <div class="val">OUTSIDE_TRADITIONAL_BANKING_HOURS</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_hours</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_HOURS</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">fee</div>
+  <div class="val">ZEROHASH_TIERED (see provenance)</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_fee</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_FEE</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">settlement_time</div>
+  <div class="val">MINUTES</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_settlement_time</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_SETTLEMENT_TIME</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row ok">
+  <div class="lab">counterparty</div>
+  <div class="val">ZEROHASH</div>
+  <div class="meta-line">USDC→USD via IBKR · operational TRUE · util N/D</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-true' title='OPS'>TRUE</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_counterparty_requirements</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_COUNTERPARTY_REQUIREMENTS</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> TRUE</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li><li><span class='pk'>evidence_level</span> 2</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">minimum</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D:no_primary_minimum_literal_on_stablecoin_page</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_minimum</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_MINIMUM</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> N/D:no_primary_minimum_literal_on_stablecoin_page</li><li><span class='pk'>disposition</span> WITHHELD</li><li><span class='pk'>evidence_level</span> nd</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">jurisdiction</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D:no_primary_jurisdiction_literal_for_usdc_usd_edge</div>
+  <div class='ch-levels'><div><span class='ch-lk'>Legal eligibility</span><span class='ch-chip ch-nd' title='LEGAL'>N/D</span></div><div><span class='ch-lk'>Operational availability</span><span class='ch-chip ch-nd' title='OPS'>N/D</span></div><div><span class='ch-lk'>Observed utilization</span><span class='ch-chip ch-nd' title='UTIL'>N/D</span></div></div>
+  <details class='prov'><summary>Evidence / provenance · conversion_usdc_to_usd_ibkr_jurisdiction</summary><ul><li><span class='pk'>asset_or_claim</span> USDC</li><li><span class='pk'>regime</span> IBKR_PRODUCT_DISCLOSURE</li><li><span class='pk'>privilege</span> CONVERSION_FRICTION_JURISDICTION</li><li><span class='pk'>legal_eligibility</span> N/D</li><li><span class='pk'>operational_availability</span> N/D</li><li><span class='pk'>observed_utilization</span> N/D</li><li><span class='pk'>false_basis</span> —</li><li><span class='pk'>granting_entity</span> Interactive Brokers LLC</li><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>source URL</span> <a href='https://www.interactivebrokers.com/en/trading/stablecoin.php'>https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>verification reason</span> N/D:no_primary_jurisdiction_literal_for_usdc_usd_edge</li><li><span class='pk'>disposition</span> WITHHELD</li><li><span class='pk'>evidence_level</span> nd</li></ul></details>
+</div>
+
+    <h3 class="ch-h3">1d · Utilization</h3>
+    <p class="sub">No manufactured panel.</p>
+    
+<div class="row gap">
+  <div class="lab">Observed utilization (Level 3/4)</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">No Level-3/4 utilization series admitted across privilege cells. Absence is part of the research result.</div>
+</div>
+<p class="note-line">Do not manufacture a utilization panel from legal eligibility or operational availability.</p>
+
+  </section>
+
+
+  <section>
+    <h2>2 · Sovereign Collateral</h2>
+    <p class="sub">MSPD stocks, bill share, and H.4.1 official holdings — display units only; canonical values unchanged.</p>
+    
+<div class="row ok">
+  <div class="lab">Marketable Treasury debt</div>
+  <div class="val">$31.46T</div>
+  <div class="meta-line">
+    unit USD_MM · asof 2026-07-31 · age 21d · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · ust_marketable_debt</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-09-14T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/debt/mspd/mspd_table_1?filter=security_type_desc:eq:Total%20Marketable&amp;sort=-record_date&amp;page%5Bsize%5D=1">https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/debt/mspd/mspd_table_1?filter…</a></li><li><span class='pk'>source_document_hash</span> 0c38a6a655f8e81030d5512602c13b1295889e1111855f83bf4804ab5fec8777</li><li><span class='pk'>observation_fingerprint</span> fbf68c04d3003635084ff5f388b091deff933bcd12d06155a9e9ac3e8c3ee5d9</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Treasury bills outstanding</div>
+  <div class="val">$6.99T</div>
+  <div class="meta-line">
+    unit USD_MM · asof 2026-07-31 · age 21d · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · ust_bills_outstanding</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-09-14T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/debt/mspd/mspd_table_1?filter=security_type_desc:eq:Marketable,security_class_desc:eq:Bills&amp;sort=-record_date&amp;page%5Bsize%5D=1">https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/debt/mspd/mspd_table_1?filter…</a></li><li><span class='pk'>source_document_hash</span> a3c26e85ea153e5ef13c0fc2837f7e51c7dcfcc972e1149f93fe7d07b42a3f48</li><li><span class='pk'>observation_fingerprint</span> 9efab137e59e83c5d407164b3c9cae5bcf7044dec0264f6289242f12d25bef5d</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Bill share of marketable</div>
+  <div class="val">22.22%</div>
+  <div class="meta-line">
+    unit PCT · asof 2026-07-31 · age 21d · Derived — MSPD · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · ust_bill_share</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-09-14T00:00:00Z</li><li><span class='pk'>source authority</span> Derived — MSPD</li><li><span class='pk'>source URL</span> file:///derived/bill_share</li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> 28c189e488795cb7e28bb738d142f1fe40ed4052092979a1363ebfad217dabf3</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> derived_from_admitted_freshness_ok</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Fed Treasury holdings (SOMA)</div>
+  <div class="val">$4.54T</div>
+  <div class="meta-line">
+    unit USD_MM · asof 2026-08-19 · age 2d · Federal Reserve · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · fed_ust_holdings</summary><ul><li><span class='pk'>asof</span> 2026-08-19</li><li><span class='pk'>stale_after</span> 2026-09-09T00:00:00Z</li><li><span class='pk'>source authority</span> Federal Reserve</li><li><span class='pk'>source URL</span> <a href="https://www.federalreserve.gov/releases/h41/current/">https://www.federalreserve.gov/releases/h41/current/</a></li><li><span class='pk'>source_document_hash</span> c6444645420a4e5fd04457dc0f317496b0b1423c5a9af95ec69c0d6c5b77c25d</li><li><span class='pk'>observation_fingerprint</span> 5238a841ffc5ce04ae7b8da27a5555cba13578b7aa64b8c2ec304cf27197f429</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> html_table_value_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Foreign official custody (H.4.1)</div>
+  <div class="val">$2.59T</div>
+  <div class="meta-line">
+    unit USD_MM · asof 2026-08-19 · age 2d · Federal Reserve · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · fo_custody_h41</summary><ul><li><span class='pk'>asof</span> 2026-08-19</li><li><span class='pk'>stale_after</span> 2026-09-09T00:00:00Z</li><li><span class='pk'>source authority</span> Federal Reserve</li><li><span class='pk'>source URL</span> <a href="https://www.federalreserve.gov/releases/h41/current/">https://www.federalreserve.gov/releases/h41/current/</a></li><li><span class='pk'>source_document_hash</span> 70ba4c60af225d2a98d8f36c01e85e9216a0a48e1c886b5ed53147171f3d7586</li><li><span class='pk'>observation_fingerprint</span> 65db88200aa81640b64b6c861000f6d1695dc81957295db95829ce4b89947606</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> html_table_value_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+  </section>
+
+  <section>
+    <h2>3 · Digital Dollar Reserve Rail</h2>
+    <p class="sub">USDT T-bill reserves + asof; USDC circulating supply when admitted. Not total reserves / intensity until USDT supply admits.</p>
+    
+<div class="row ok">
+  <div class="lab">USDT · U.S. Treasury Bills</div>
+  <div class="val">$114.96B</div>
+  <div class="meta-line">
+    unit USD · asof 2026-06-30 · age 52d · Tether Official Transparency (Contentful page-data) · VERIFIED
+  </div>
+  <div class='note-line'>source category = U.S. Treasury Bills · not total reserves / not net Treasury demand</div>
+  <details class='prov'><summary>Evidence / provenance · usdt_reserve_treasury_bills</summary><ul><li><span class='pk'>asof</span> 2026-06-30</li><li><span class='pk'>stale_after</span> 2026-10-28T00:00:00Z</li><li><span class='pk'>source authority</span> Tether Official Transparency (Contentful page-data)</li><li><span class='pk'>source URL</span> <a href="https://tether.to/page-data/en/transparency/page-data.json">https://tether.to/page-data/en/transparency/page-data.json</a></li><li><span class='pk'>source_document_hash</span> 0c32b00d45bdb6be4075a03f099c2b9b42b838d891d7c32467db98ee7380e9aa</li><li><span class='pk'>observation_fingerprint</span> 4735fc3dc2f50c67c3a4d6529cf8a7256163f6548cc36ebbf625990da4ce1319</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">USDT reserve report as-of</div>
+  <div class="val">2026-06-30</div>
+  <div class="meta-line">
+    unit DATE · asof 2026-06-30 · age 52d · Tether Official Transparency (Contentful page-data) · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · usdt_reserve_report_asof</summary><ul><li><span class='pk'>asof</span> 2026-06-30</li><li><span class='pk'>stale_after</span> 2026-10-28T00:00:00Z</li><li><span class='pk'>source authority</span> Tether Official Transparency (Contentful page-data)</li><li><span class='pk'>source URL</span> <a href="https://tether.to/page-data/en/transparency/page-data.json">https://tether.to/page-data/en/transparency/page-data.json</a></li><li><span class='pk'>source_document_hash</span> 0c32b00d45bdb6be4075a03f099c2b9b42b838d891d7c32467db98ee7380e9aa</li><li><span class='pk'>observation_fingerprint</span> 5235183f791db4a5999abc6ebbdec2d1599f3586bbd060bba2b1e334e404fa8f</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">USDC circulating supply</div>
+  <div class="val">$72.77B</div>
+  <div class="meta-line">
+    unit USD · asof 2026-08-21 · age 0d · Circle · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · usdc_circulating_supply</summary><ul><li><span class='pk'>asof</span> 2026-08-21</li><li><span class='pk'>stale_after</span> 2026-08-28T00:00:00Z</li><li><span class='pk'>source authority</span> Circle</li><li><span class='pk'>source URL</span> <a href="https://api.circle.com/v1/stablecoins">https://api.circle.com/v1/stablecoins</a></li><li><span class='pk'>source_document_hash</span> cd852575ccc52de0bdd91aa7f048cfd47ce8d20e64306ce816f1dd7f24e77f10</li><li><span class='pk'>observation_fingerprint</span> c29d92c166b56d881d6d8b63d7903e180d7ea537ebf01a2497e0223b23258d4b</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+  </section>
+
+  <section>
+    <h2>4 · Broker Distribution Rail</h2>
+    <p class="sub">IBKR / USDC — Mode A verified capabilities only.</p>
+    
+<div class="row ok">
+  <div class="lab">IBKR / USDC</div>
+  <div class="val">discrete capabilities</div>
+  <div class="meta-line">Funding and auto-conversion only — deposit / withdrawal / trade / custody not shown</div>
+</div>
+
+<div class="row ok">
+  <div class="lab">Funding rail</div>
+  <div class="val">VERIFIED</div>
+  <div class="meta-line">
+    unit BOOL_TEXT · asof N/D · age N/D · Interactive Brokers LLC · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · ibkr_usdc_funding_rail</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> 2026-12-31T00:00:00Z</li><li><span class='pk'>source authority</span> Interactive Brokers LLC</li><li><span class='pk'>source URL</span> <a href="https://www.interactivebrokers.com/en/trading/stablecoin.php">https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> dc48f926be1aeb300becd85eb51405c6f97de28bd5ee470bd456d4c68345cf9b</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Automatic USD conversion</div>
+  <div class="val">VERIFIED</div>
+  <div class="meta-line">
+    unit BOOL_TEXT · asof N/D · age N/D · Interactive Brokers LLC · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · ibkr_usdc_auto_convert_to_usd</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> 2026-12-31T00:00:00Z</li><li><span class='pk'>source authority</span> Interactive Brokers LLC</li><li><span class='pk'>source URL</span> <a href="https://www.interactivebrokers.com/en/trading/stablecoin.php">https://www.interactivebrokers.com/en/trading/stablecoin.php</a></li><li><span class='pk'>source_document_hash</span> —</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> 572b34a5234076be5aa340bbd4597c19d620c9e62968d47cbd7b68f79200e030</li><li><span class='pk'>verification reason</span> expected_found_in_source_body</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+  </section>
+
+  <section>
+    <h2>5 · GENIUS Buildout</h2>
+    <p class="sub">Statute enactment and implementing rulemaking kept as separate clocks. Foreign-issuer pathway shown when admitted. Not utilization.</p>
+    
+<div class="row ok">
+  <div class="lab">Statute legal state</div>
+  <div class="val">ENACTED</div>
+  <div class="meta-line">
+    unit STATE · asof 2025-07-18 · age 399d · U.S. Government Publishing Office · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · genius_statute_legal_state</summary><ul><li><span class='pk'>asof</span> 2025-07-18</li><li><span class='pk'>stale_after</span> 2035-07-16T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Government Publishing Office</li><li><span class='pk'>source URL</span> <a href="https://api.govinfo.gov/packages/PLAW-119publ27/summary?api_key=DEMO_KEY">https://api.govinfo.gov/packages/PLAW-119publ27/summary?api_key=DEMO_KEY</a></li><li><span class='pk'>source_document_hash</span> 905e4bdd3300770832353cf2e111b5cbc70c17119a4044fb34860d876b38139d</li><li><span class='pk'>observation_fingerprint</span> 2f664b3d315a96c410ee464979f62483159d203dc79efcb4906e6f847ce26591</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><div class='clocks'><div class='clock'><span class='ck'>Published</span><span class='cv'>2025-07-18</span></div><div class='clock'><span class='ck'>Effective</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Comment deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Compliance deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Operational</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Legal state</span><span class='cv'>ENACTED</span></div><div class='clock'><span class='ck'>Operational state</span><span class='cv'>N/D</span></div></div>
+<div class="row ok">
+  <div class="lab">Implementing rule state</div>
+  <div class="val">PROPOSED_RULE</div>
+  <div class="meta-line">
+    unit STATE · asof 2026-08-18 · age 3d · U.S. Federal Register / Department of the Treasury · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · genius_implementation_rule_state</summary><ul><li><span class='pk'>asof</span> 2026-08-18</li><li><span class='pk'>stale_after</span> 2027-08-18T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Federal Register / Department of the Treasury</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/api/v1/documents/2026-16796.json">https://www.federalregister.gov/api/v1/documents/2026-16796.json</a></li><li><span class='pk'>source_document_hash</span> 5a882ef7d52969f1a234b82d1a85fd88b448577d01f768834283563894f85c26</li><li><span class='pk'>observation_fingerprint</span> 2bd88e3ae85aa6b5431ab8314f5f6efe92659d12030ecd19c5fbc3d4c5acabd0</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><div class='clocks'><div class='clock'><span class='ck'>Published</span><span class='cv'>2026-08-18</span></div><div class='clock'><span class='ck'>Effective</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Comment deadline</span><span class='cv'>2026-10-19</span></div><div class='clock'><span class='ck'>Compliance deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Operational</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Legal state</span><span class='cv'>PROPOSED_RULE</span></div><div class='clock'><span class='ck'>Operational state</span><span class='cv'>N/D</span></div></div>
+<div class="row ok">
+  <div class="lab">Foreign-issuer pathway (OCC)</div>
+  <div class="val">PROPOSED_RULE</div>
+  <div class="meta-line">
+    unit STATE · asof N/D · age N/D · Office of the Comptroller of the Currency · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · genius_foreign_registration</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> Office of the Comptroller of the Currency</li><li><span class='pk'>source URL</span> <a href="https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-24.html">https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-24.html</a></li><li><span class='pk'>source_document_hash</span> 3b85a73f12e4ffad7a7f9411361b07c754578a111298513ccb2afb4268fb3fab</li><li><span class='pk'>observation_fingerprint</span> 4ed435f8236cb9deebaa63a34c8bccbf18997230d21caf3dce20622b34caf012</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><div class='clocks'><div class='clock'><span class='ck'>Published</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Effective</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Comment deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Compliance deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Operational</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Legal state</span><span class='cv'>PROPOSED_RULE</span></div><div class='clock'><span class='ck'>Operational state</span><span class='cv'>N/D</span></div></div>
+  </section>
+
+  <section>
+    <h2>6 · Treasury Clearing</h2>
+    <p class="sub">Cash and repo clearing final-rule milestones — legal, operational, and compliance clocks kept separate.</p>
+    
+<div class="row ok">
+  <div class="lab">Cash clearing rule state</div>
+  <div class="val">FINAL_RULE</div>
+  <div class="meta-line">
+    unit STATE · asof 2025-03-04 · age 535d · U.S. Securities and Exchange Commission / Federal Register · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · cash_compliance_milestone</summary><ul><li><span class='pk'>asof</span> 2025-03-04</li><li><span class='pk'>stale_after</span> 2027-03-04T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Securities and Exchange Commission / Federal Register</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/api/v1/documents/2025-03351.json">https://www.federalregister.gov/api/v1/documents/2025-03351.json</a></li><li><span class='pk'>source_document_hash</span> 497f37f5169ad0c5abaa2e18f723ffaeff9553d136d897a72f8e3ae0aaa932e2</li><li><span class='pk'>observation_fingerprint</span> 7e19796553c94c2e52081fa8fb0216d6f9b0016b8b4908ba557230e0b3f22273</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><div class='clocks'><div class='clock'><span class='ck'>Published</span><span class='cv'>2025-03-04</span></div><div class='clock'><span class='ck'>Effective</span><span class='cv'>2025-03-04</span></div><div class='clock'><span class='ck'>Comment deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Compliance deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Operational</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Legal state</span><span class='cv'>FINAL_RULE</span></div><div class='clock'><span class='ck'>Operational state</span><span class='cv'>N/D</span></div></div>
+<div class="row ok">
+  <div class="lab">Repo clearing rule state</div>
+  <div class="val">FINAL_RULE</div>
+  <div class="meta-line">
+    unit STATE · asof 2025-03-04 · age 535d · U.S. Securities and Exchange Commission / Federal Register · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · repo_clearing</summary><ul><li><span class='pk'>asof</span> 2025-03-04</li><li><span class='pk'>stale_after</span> 2027-03-04T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Securities and Exchange Commission / Federal Register</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/api/v1/documents/2025-03351.json">https://www.federalregister.gov/api/v1/documents/2025-03351.json</a></li><li><span class='pk'>source_document_hash</span> 497f37f5169ad0c5abaa2e18f723ffaeff9553d136d897a72f8e3ae0aaa932e2</li><li><span class='pk'>observation_fingerprint</span> 32c30740d4d3baa3e51191c134ee7b5fff978a394cbb2866e51a0bfbc64040ce</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><div class='clocks'><div class='clock'><span class='ck'>Published</span><span class='cv'>2025-03-04</span></div><div class='clock'><span class='ck'>Effective</span><span class='cv'>2025-03-04</span></div><div class='clock'><span class='ck'>Comment deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Compliance deadline</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Operational</span><span class='cv'>N/D</span></div><div class='clock'><span class='ck'>Legal state</span><span class='cv'>FINAL_RULE</span></div><div class='clock'><span class='ck'>Operational state</span><span class='cv'>N/D</span></div></div><p class='note-line'>Source text pairs repo compliance (June 30, 2027) with cash (December 31, 2026) — document publication/effective clocks shown separately.</p>
+  </section>
+
+  <section>
+    <h2>7 · Digital / Sovereign Reserve Assets</h2>
+    <p class="sub">Strategic Bitcoin Reserve legal/mandate grammar + official gold comparator. Operational office and BTC quantities stay N/D.</p>
+    
+<div class="row ok">
+  <div class="lab">SBR legal state</div>
+  <div class="val">EXECUTIVE_ORDER_ACTIVE</div>
+  <div class="meta-line">
+    unit STATE · asof 2025-03-11 · age 528d · White House / Federal Register · VERIFIED
+  </div>
+  <div class='note-line'>EO 14233 — EXECUTIVE_ORDER_ACTIVE, not ENACTED</div>
+  <details class='prov'><summary>Evidence / provenance · strategic_bitcoin_reserve_legal_state</summary><ul><li><span class='pk'>asof</span> 2025-03-11</li><li><span class='pk'>stale_after</span> 2035-03-09T00:00:00Z</li><li><span class='pk'>source authority</span> White House / Federal Register</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/api/v1/documents/2025-03992.json">https://www.federalregister.gov/api/v1/documents/2025-03992.json</a></li><li><span class='pk'>source_document_hash</span> 8a9e0573c9cbc148c82c7287052661d03f41b2b1da1680f1f22e440eb0e930fa</li><li><span class='pk'>observation_fingerprint</span> aaa27c71ff81da5c3caa43740881e29b2879ec947b48592ea2bba5a5719daf56</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Administration mandate</div>
+  <div class="val">US_TREASURY</div>
+  <div class="meta-line">
+    unit INSTITUTION · asof N/D · age N/D · White House / Federal Register · VERIFIED
+  </div>
+  <div class='note-line'>Legal mandate only — not operational office confirmation</div>
+  <details class='prov'><summary>Evidence / provenance · btc_reserve_administration_mandate</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> White House / Federal Register</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt">https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt</a></li><li><span class='pk'>source_document_hash</span> 35a098715939e009d0c33db7d716523c71baaa5fd2262aebe9f8bb6b5e426381</li><li><span class='pk'>observation_fingerprint</span> ebc427ba929fea98d31edc74d7a0f2b39fba880d21a0c470c22d988eb5a268db</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Budget-neutral strategy mandate</div>
+  <div class="val">AUTHORIZED_TO_DEVELOP_STRATEGIES</div>
+  <div class="meta-line">
+    unit STATE · asof N/D · age N/D · White House / Federal Register · VERIFIED
+  </div>
+  <div class='note-line'>AUTHORIZED_TO_DEVELOP_STRATEGIES — not acquisition activity</div>
+  <details class='prov'><summary>Evidence / provenance · btc_budget_neutral_acquisition_strategy_mandate</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> White House / Federal Register</li><li><span class='pk'>source URL</span> <a href="https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt">https://www.federalregister.gov/documents/full_text/text/2025/03/11/2025-03992.txt</a></li><li><span class='pk'>source_document_hash</span> 35a098715939e009d0c33db7d716523c71baaa5fd2262aebe9f8bb6b5e426381</li><li><span class='pk'>observation_fingerprint</span> cf2956d8fcd8dfe7095dbcc5bcab776d650bd74e117b8edfb15ad24b0f7b05a5</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Official gold · fine troy ounces</div>
+  <div class="val">261,498,926.241 oz</div>
+  <div class="meta-line">
+    unit FINE_TROY_OZ · asof 2026-07-31 · age 21d · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · us_official_gold_ounces</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-11-28T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?filter=record_date%3Aeq%3A2026-07-31&amp;page%5Bsize%5D=100">https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?fi…</a></li><li><span class='pk'>source_document_hash</span> 4517a9bd4711ceccd6bfc7ae23d41fa62a9584939199cec6dad5f0bac35fd163</li><li><span class='pk'>observation_fingerprint</span> df171243cddf85f62c0567b8c388538c3024fc4691f9e360896d89dd0e6de693</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Official gold · book value</div>
+  <div class="val">$11.04B</div>
+  <div class="meta-line">
+    unit USD · asof 2026-07-31 · age 21d · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  <div class='note-line'>BOOK_VALUE at statutory $42.2222/oz — not market value</div>
+  <details class='prov'><summary>Evidence / provenance · us_official_gold_book_value</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-11-28T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?filter=record_date%3Aeq%3A2026-07-31&amp;page%5Bsize%5D=100">https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?fi…</a></li><li><span class='pk'>source_document_hash</span> 4517a9bd4711ceccd6bfc7ae23d41fa62a9584939199cec6dad5f0bac35fd163</li><li><span class='pk'>observation_fingerprint</span> 2bc4a931abdcd03d15ab5dc6752c0f0616a89fd69242680694f83cfb2b958b94</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Official gold · custody geography</div>
+  <div class="val">8 custody locations (see provenance)</div>
+  <div class="meta-line">
+    unit CUSTODY_MAP_JSON · asof 2026-07-31 · age 21d · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  
+  <details class='prov'><summary>Evidence / provenance · gold_reserve_custody</summary><ul><li><span class='pk'>asof</span> 2026-07-31</li><li><span class='pk'>stale_after</span> 2026-11-28T00:00:00Z</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?filter=record_date%3Aeq%3A2026-07-31&amp;page%5Bsize%5D=100">https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/gold_reserve?fi…</a></li><li><span class='pk'>source_document_hash</span> 4517a9bd4711ceccd6bfc7ae23d41fa62a9584939199cec6dad5f0bac35fd163</li><li><span class='pk'>observation_fingerprint</span> b5cf9c2af086f32a76dc9c5d7eddd8d4d3aded442141e6ec2969ef66851031ac</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> primary_structured_data_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div>
+<div class="row ok">
+  <div class="lab">Official gold · statutory book treatment</div>
+  <div class="val">STATUTORY_BOOK_USD_42_2222_PER_OZ</div>
+  <div class="meta-line">
+    unit STATE · asof N/D · age N/D · U.S. Treasury / Fiscal Service · VERIFIED
+  </div>
+  <div class='note-line'>Smoke admit — atomic book-price claim preferred later</div>
+  <details class='prov'><summary>Evidence / provenance · gold_reserve_legal_treatment</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> U.S. Treasury / Fiscal Service</li><li><span class='pk'>source URL</span> <a href="https://fiscal.treasury.gov/resources/gold-report">https://fiscal.treasury.gov/resources/gold-report</a></li><li><span class='pk'>source_document_hash</span> 7fa44b2ee05522c052fab9a3bc495c1d277cd453ba07c6a471336f440993e31c</li><li><span class='pk'>observation_fingerprint</span> c8fb12df6ff42daefa0a3cf42b752823458926218eed429330b94b6aaa1edb7b</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> regulatory_state_vector_verified</li><li><span class='pk'>disposition</span> ADMITTED</li></ul></details>
+</div><p class='note-line'>Channel B only. BTC does not back GENIUS stablecoins or Treasuries on this page. Holdings / acquisitions / market values remain N/D.</p>
+  </section>
+
+  <section>
+    <h2>8 · Evidence Gaps</h2>
+    <p class="sub">Withheld claims rendered as N/D — never coerced. Includes SBR operational smokes and remaining Batch 2 gaps.</p>
+    <div class="row gap">
+  <div class="lab">USDT circulating supply</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · LOCATOR_NOT_FOUND · No labeled circulating-supply JSON path yet (ReportLiabilities ≠ supply).</div>
+  <details class='prov'><summary>Evidence / provenance · usdt_circulating_supply</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> Tether Official Transparency</li><li><span class='pk'>source URL</span> <a href="https://tether.to/en/transparency/">https://tether.to/en/transparency/</a></li><li><span class='pk'>source_document_hash</span> 0c32b00d45bdb6be4075a03f099c2b9b42b838d891d7c32467db98ee7380e9aa</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> LOCATOR_NOT_FOUND</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">USDC Treasury bill reserves</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · UNSUPPORTED_DOCUMENT_STRUCTURE · Attestation PDF had no extractable text layer (OCR forbidden).</div>
+  <details class='prov'><summary>Evidence / provenance · usdc_reserve_treasury_bills</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> Circle attestation</li><li><span class='pk'>source URL</span> <a href="https://www.circle.com/en/transparency">https://www.circle.com/en/transparency</a></li><li><span class='pk'>source_document_hash</span> 933edcb3846e26e6a87b1476cedc12a14d9e1d3e42dcd30aa73f41d9a4cf5b74</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> UNSUPPORTED_DOCUMENT_STRUCTURE</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">USDC reserve report as-of</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · parent withheld · Conditional companion — parent USDC T-bills claim withheld.</div>
+  <details class='prov'><summary>Evidence / provenance · usdc_reserve_report_asof</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> Circle attestation</li><li><span class='pk'>source URL</span> <a href="https://www.circle.com/en/transparency">https://www.circle.com/en/transparency</a></li><li><span class='pk'>source_document_hash</span> 933edcb3846e26e6a87b1476cedc12a14d9e1d3e42dcd30aa73f41d9a4cf5b74</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> UNSUPPORTED_DOCUMENT_STRUCTURE</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">DTC tokenization state</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · REGULATORY_STATUS_UNESTABLISHED · Pinned authoritative state document not yet located.</div>
+  <details class='prov'><summary>Evidence / provenance · dtc_tokenization_state</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> DTCC</li><li><span class='pk'>source URL</span> <a href="https://www.dtcc.com/">https://www.dtcc.com/</a></li><li><span class='pk'>source_document_hash</span> 5880c4a9cec932bbba77fc86b54160b9a4574f20928c8e511776d9fde73b443c</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> REGULATORY_STATUS_UNESTABLISHED</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">Nasdaq tokenized securities state</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · REGULATORY_STATUS_UNESTABLISHED · Pinned authoritative state document not yet located.</div>
+  <details class='prov'><summary>Evidence / provenance · nasdaq_tokenized</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> Nasdaq</li><li><span class='pk'>source URL</span> <a href="https://www.nasdaq.com/">https://www.nasdaq.com/</a></li><li><span class='pk'>source_document_hash</span> 5c0f47326cc799a71ecb8fe60d1336200653338cbd0430027c86f694ee75d1b1</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> REGULATORY_STATUS_UNESTABLISHED</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">NYSE tokenized securities state</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · REGULATORY_STATUS_UNESTABLISHED · Pinned authoritative state document not yet located.</div>
+  <details class='prov'><summary>Evidence / provenance · nyse_tokenized</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> NYSE</li><li><span class='pk'>source URL</span> <a href="https://www.nyse.com/">https://www.nyse.com/</a></li><li><span class='pk'>source_document_hash</span> d891f01c2bfccfdf277f2ea409e8e7df32db0d886e289932682988a63e4312bd</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> REGULATORY_STATUS_UNESTABLISHED</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">SBR operational state</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · REGULATORY_STATUS_UNESTABLISHED · EO text is not operational proof.</div>
+  <details class='prov'><summary>Evidence / provenance · strategic_bitcoin_reserve_operational_state</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> U.S. Treasury</li><li><span class='pk'>source URL</span> <a href="https://home.treasury.gov/">https://home.treasury.gov/</a></li><li><span class='pk'>source_document_hash</span> 35a098715939e009d0c33db7d716523c71baaa5fd2262aebe9f8bb6b5e426381</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> REGULATORY_STATUS_UNESTABLISHED</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div><div class="row gap">
+  <div class="lab">SBR operational office</div>
+  <div class="val">N/D</div>
+  <div class="meta-line">N/D · REGULATORY_STATUS_UNESTABLISHED · EO mandate ≠ named operational office; awaiting primary confirmation.</div>
+  <details class='prov'><summary>Evidence / provenance · btc_reserve_operational_office</summary><ul><li><span class='pk'>asof</span> N/D</li><li><span class='pk'>stale_after</span> N/D</li><li><span class='pk'>source authority</span> U.S. Treasury</li><li><span class='pk'>source URL</span> <a href="https://home.treasury.gov/">https://home.treasury.gov/</a></li><li><span class='pk'>source_document_hash</span> 35a098715939e009d0c33db7d716523c71baaa5fd2262aebe9f8bb6b5e426381</li><li><span class='pk'>observation_fingerprint</span> —</li><li><span class='pk'>GF package_hash</span> —</li><li><span class='pk'>verification reason</span> REGULATORY_STATUS_UNESTABLISHED</li><li><span class='pk'>disposition</span> WITHHELD</li></ul></details>
+</div>
+  </section>
+
+  <div class="foot">
+    Source: Batch 1 + Batch 2 + Reserve Layer Batch 1 + Privilege Map / Collateral / Conversion seed stores
+    (<code>data/architecture/</code>).
+    No OCR · no inferred BTC↔GENIUS links · no scores · N/D ≠ FALSE.
+    Research only · build frozen · watch cell changes.
+  </div>
+</div>
+
+</body></html>

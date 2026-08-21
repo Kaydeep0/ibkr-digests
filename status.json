@@ -1,55 +1,25 @@
 {
-  "generated_utc": "2026-08-21T16:33:37Z",
+  "generated_utc": "2026-08-21T16:34:55Z",
   "day": "2026-08-21",
   "site": "https://kaydeep0.github.io/ibkr-digests/",
   "slots": {
-    "ycc": {
+    "spacex": {
       "ok": true,
-      "day": "2026-08-21",
-      "source": "data/daily_reports/ycc_2026-08-21.html",
-      "url": "https://kaydeep0.github.io/ibkr-digests/ycc/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/ycc/2026-08-21/",
+      "day": "2026-08-20",
+      "source": "data/daily_reports/spacex_2026-08-20.html",
+      "url": "https://kaydeep0.github.io/ibkr-digests/spacex/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/spacex/2026-08-20/",
       "archive_days": [
-        "2026-08-21",
         "2026-08-20",
-        "2026-08-19",
         "2026-08-13"
       ],
       "hub": {
-        "today_state": "All three financing clocks are deteriorating, while policy response remains partial.",
+        "today_state": "Material SEC activity in the lookback window. Next known filing window: next inventory free-up 20.",
         "metrics": [
-          "Financing pressure 73",
-          "Policy response 46",
-          "Carry gap +173 bp",
-          "3/3 clocks adverse"
-        ],
-        "changes": [
-          "Fiscal Carry Gap: 150 bp \u2192 173 bp (+23 bp)",
-          "30Y yield: 5.05% \u2192 5.18% (+0.13%)",
-          "Interest/Revenue: 21.5% \u2192 22.0% (+0.5%)"
-        ]
-      }
-    },
-    "capital": {
-      "ok": true,
-      "day": "2026-08-21",
-      "source": "data/daily_reports/capital_2026-08-21.html",
-      "url": "https://kaydeep0.github.io/ibkr-digests/capital/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/capital/2026-08-21/",
-      "archive_days": [
-        "2026-08-21",
-        "2026-08-20"
-      ],
-      "hub": {
-        "today_state": "Pressure is concentrated in risk-free rate (SOVEREIGN REPRICING); private risk premiums are on watch for migration.",
-        "metrics": [
-          "30Y 5.19%",
-          "IG OAS 81 bp",
-          "HY OAS 273 bp",
-          "Regime: sovereign repricing"
-        ],
-        "changes": [
-          "No material day-over-day moves above thresholds."
+          "Last SEC: - `2026-08-14T13:17:14` **Space Exploration Tech",
+          "Next catalyst: next inventory free-up 20",
+          "14d calendar: 1",
+          "Status: linked"
         ]
       }
     },
@@ -63,70 +33,77 @@
         "2026-08-13"
       ],
       "hub": {
-        "today_state": "Universe snapshot is stale (8 day(s) old) \u2014 do not treat enter gates as current.",
+        "today_state": "Entry gates remain closed (hub_heat_raw_below_floor); risk appetite is selective, not indiscriminate.",
         "metrics": [
-          "1 names passed",
-          "1 new",
-          "0 dropped",
-          "Strongest signal: AAA"
-        ],
-        "changes": [
-          "New on watchlist: AAA",
-          "Enter window: OPEN \u2192 CLOSED",
-          "Names passed: 3 \u2192 1 (-2)"
+          "2 names passed",
+          "0 new",
+          "1 dropped",
+          "Strongest signal: ENVX"
         ]
       }
     },
-    "spacex": {
+    "ycc": {
       "ok": true,
-      "day": "2026-08-21",
-      "source": "data/daily_reports/spacex_2026-08-21.html",
-      "url": "https://kaydeep0.github.io/ibkr-digests/spacex/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/spacex/2026-08-21/",
+      "day": "2026-08-20",
+      "source": "data/daily_reports/ycc_2026-08-20.html",
+      "url": "https://kaydeep0.github.io/ibkr-digests/ycc/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/ycc/2026-08-20/",
       "archive_days": [
-        "2026-08-21",
         "2026-08-20",
+        "2026-08-19",
         "2026-08-13"
       ],
       "hub": {
-        "today_state": "The Aug. 20 unlock approximately doubled modeled tradable float from 4.86% to 9.72%; the stock is -2.9% from the last close before the unlock.",
+        "today_state": "All three financing clocks are deteriorating, while policy response remains partial.",
         "metrics": [
-          "Last SEC: - `2026-08-14T13:17:14` **Space Exploration Tech",
-          "Next inventory: 2026-12-08 \u00b7 109 days",
-          "14d calendar: 1",
-          "Status: linked"
-        ],
-        "changes": [
-          "No material SEC / calendar changes flagged."
+          "Financing pressure 73",
+          "Policy response 46",
+          "Carry gap +173 bp",
+          "3/3 clocks adverse"
+        ]
+      }
+    },
+    "capital": {
+      "ok": true,
+      "day": "2026-08-20",
+      "source": "data/daily_reports/capital_2026-08-20.html",
+      "url": "https://kaydeep0.github.io/ibkr-digests/capital/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/capital/2026-08-20/",
+      "archive_days": [
+        "2026-08-20"
+      ],
+      "hub": {
+        "today_state": "Pressure is concentrated in rates + credit (CREDIT TRANSMISSION); private risk premiums are on watch for migration.",
+        "metrics": [
+          "30Y 5.19%",
+          "IG OAS 82 bp",
+          "HY OAS 275 bp",
+          "Regime: credit transmission"
+        ]
+      }
+    },
+    "architecture": {
+      "ok": true,
+      "day": "2026-08-21",
+      "source": "data/daily_reports/architecture_2026-08-21.html",
+      "url": "https://kaydeep0.github.io/ibkr-digests/architecture/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/architecture/2026-08-21/",
+      "archive_days": [
+        "2026-08-21"
+      ],
+      "hub": {
+        "today_state": "Dollar rails \u2014 observation system frozen; cell changes are the signal.",
+        "metrics": [
+          "Bills / marketable 22.22%",
+          "USDT Treasury bills $114.96B \u00b7 Jun 30",
+          "GENIUS statute ENACTED \u00b7 impl PROPOSED_RULE",
+          "No architecture changes today.",
+          "Evidence gaps 8 withheld"
         ]
       }
     }
   },
   "musk_dossier_live": "https://kaydeep0.github.io/musk-empire-dossier/",
-  "grammar": "stack_brief \u2192 today_state \u2192 what_changed \u2192 raw_economics \u2192 interpretation \u2192 archive",
-  "note": "HTML mirrors of daily digest emails; research only. Hosted on public ibkr-digests.",
-  "public_repo": "Kaydeep0/ibkr-digests",
-  "stack_brief": {
-    "headline": "Sovereign floors are under pressure while equity books diverge \u2014 SPCX scarcity is under test and Scout data is stale.",
-    "bullets": [
-      "Sovereign \u2014 All three financing clocks are deteriorating, while policy response remains partial. (Financing pressure 73 \u00b7 Policy response 46 \u00b7 Carry gap +173 bp)",
-      "Claims \u2014 Pressure is concentrated in risk-free rate (SOVEREIGN REPRICING); private risk premiums are on watch for migration. (30Y 5.19% \u00b7 IG OAS 81 bp \u00b7 HY OAS 273 bp)",
-      "Inventory \u2014 The Aug. 20 unlock approximately doubled modeled tradable float from 4.86% to 9.72%; the stock is -2.9% from the last close before the unlock.",
-      "Migration \u2014 STALE (asof 2026-08-13) \u2014 do not treat enter gates as current.",
-      "Sovereign \u0394 \u2014 Fiscal Carry Gap: 150 bp \u2192 173 bp (+23 bp)",
-      "Sovereign \u0394 \u2014 30Y yield: 5.05% \u2192 5.18% (+0.13%)",
-      "Migration \u0394 \u2014 Enter window: OPEN \u2192 CLOSED"
-    ],
-    "open_first": [
-      "scout",
-      "ycc",
-      "capital"
-    ],
-    "open_first_labels": [
-      "Migration",
-      "Sovereign",
-      "Claims"
-    ],
-    "day": "2026-08-21"
-  }
+  "grammar": "today_state \u2192 what_changed \u2192 raw_economics \u2192 interpretation \u2192 archive",
+  "note": "HTML mirrors of daily digest emails; research only."
 }

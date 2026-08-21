@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-21T01:09:49Z",
+  "generated_utc": "2026-08-21T01:14:30Z",
   "day": "2026-08-21",
   "site": "https://kaydeep0.github.io/ibkr-digests/",
   "slots": {
@@ -22,6 +22,11 @@
           "Policy response 46",
           "Carry gap +173 bp",
           "3/3 clocks adverse"
+        ],
+        "changes": [
+          "Fiscal Carry Gap: 150 bp \u2192 173 bp (+23 bp)",
+          "30Y yield: 5.05% \u2192 5.18% (+0.13%)",
+          "Interest/Revenue: 21.5% \u2192 22.0% (+0.5%)"
         ]
       }
     },
@@ -42,6 +47,9 @@
           "IG OAS 81 bp",
           "HY OAS 273 bp",
           "Regime: sovereign repricing"
+        ],
+        "changes": [
+          "No material day-over-day moves above thresholds."
         ]
       }
     },
@@ -61,6 +69,11 @@
           "1 new",
           "0 dropped",
           "Strongest signal: AAA"
+        ],
+        "changes": [
+          "New on watchlist: AAA",
+          "Enter window: OPEN \u2192 CLOSED",
+          "Names passed: 3 \u2192 1 (-2)"
         ]
       }
     },
@@ -82,12 +95,38 @@
           "Next inventory: 2026-12-08 \u00b7 109 days",
           "14d calendar: 1",
           "Status: linked"
+        ],
+        "changes": [
+          "No material SEC / calendar changes flagged."
         ]
       }
     }
   },
   "musk_dossier_live": "https://kaydeep0.github.io/musk-empire-dossier/",
-  "grammar": "today_state \u2192 what_changed \u2192 raw_economics \u2192 interpretation \u2192 archive",
+  "grammar": "stack_brief \u2192 today_state \u2192 what_changed \u2192 raw_economics \u2192 interpretation \u2192 archive",
   "note": "HTML mirrors of daily digest emails; research only. Hosted on public ibkr-digests.",
-  "public_repo": "Kaydeep0/ibkr-digests"
+  "public_repo": "Kaydeep0/ibkr-digests",
+  "stack_brief": {
+    "headline": "Sovereign floors are under pressure while equity books diverge \u2014 SPCX scarcity is under test and Scout data is stale.",
+    "bullets": [
+      "Sovereign \u2014 All three financing clocks are deteriorating, while policy response remains partial. (Financing pressure 73 \u00b7 Policy response 46 \u00b7 Carry gap +173 bp)",
+      "Claims \u2014 Pressure is concentrated in risk-free rate (SOVEREIGN REPRICING); private risk premiums are on watch for migration. (30Y 5.19% \u00b7 IG OAS 81 bp \u00b7 HY OAS 273 bp)",
+      "Inventory \u2014 The Aug. 20 unlock approximately doubled modeled tradable float from 4.86% to 9.72%; the stock is -2.9% from the last close before the unlock.",
+      "Migration \u2014 STALE (asof 2026-08-13) \u2014 do not treat enter gates as current.",
+      "Sovereign \u0394 \u2014 Fiscal Carry Gap: 150 bp \u2192 173 bp (+23 bp)",
+      "Sovereign \u0394 \u2014 30Y yield: 5.05% \u2192 5.18% (+0.13%)",
+      "Migration \u0394 \u2014 Enter window: OPEN \u2192 CLOSED"
+    ],
+    "open_first": [
+      "scout",
+      "ycc",
+      "capital"
+    ],
+    "open_first_labels": [
+      "Migration",
+      "Sovereign",
+      "Claims"
+    ],
+    "day": "2026-08-21"
+  }
 }

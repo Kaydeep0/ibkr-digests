@@ -1,23 +1,24 @@
 {
-  "generated_utc": "2026-08-21T00:48:47Z",
-  "day": "2026-08-20",
+  "generated_utc": "2026-08-21T00:56:37Z",
+  "day": "2026-08-21",
   "site": "https://kaydeep0.github.io/ibkr-digests/",
   "slots": {
     "spacex": {
       "ok": true,
-      "day": "2026-08-20",
-      "source": "data/daily_reports/spacex_2026-08-20.html",
+      "day": "2026-08-21",
+      "source": "data/daily_reports/spacex_2026-08-21.html",
       "url": "https://kaydeep0.github.io/ibkr-digests/spacex/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/spacex/2026-08-20/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/spacex/2026-08-21/",
       "archive_days": [
+        "2026-08-21",
         "2026-08-20",
         "2026-08-13"
       ],
       "hub": {
-        "today_state": "Material SEC activity in the lookback window. Next known filing window: Next check d+7 due 20.",
+        "today_state": "The Aug. 20 unlock approximately doubled modeled tradable float from 4.86% to 9.72%; the stock is -2.9% from the last close before the unlock.",
         "metrics": [
           "Last SEC: - `2026-08-14T13:17:14` **Space Exploration Tech",
-          "Next catalyst: Next check d+7 due 20",
+          "Next inventory: 2026-12-08 \u00b7 109 days",
           "14d calendar: 1",
           "Status: linked"
         ]
@@ -33,22 +34,23 @@
         "2026-08-13"
       ],
       "hub": {
-        "today_state": "Risk appetite improving enough for an open enter window, but entry gates remain selective.",
+        "today_state": "Universe snapshot is stale (8 day(s) old) \u2014 do not treat enter gates as current.",
         "metrics": [
-          "3 names passed",
-          "0 new",
+          "1 names passed",
+          "1 new",
           "0 dropped",
-          "Strongest signal: ALLT"
+          "Strongest signal: AAA"
         ]
       }
     },
     "ycc": {
       "ok": true,
-      "day": "2026-08-20",
-      "source": "data/daily_reports/ycc_2026-08-20.html",
+      "day": "2026-08-21",
+      "source": "data/daily_reports/ycc_2026-08-21.html",
       "url": "https://kaydeep0.github.io/ibkr-digests/ycc/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/ycc/2026-08-20/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/ycc/2026-08-21/",
       "archive_days": [
+        "2026-08-21",
         "2026-08-20",
         "2026-08-19",
         "2026-08-13"
@@ -65,11 +67,12 @@
     },
     "capital": {
       "ok": true,
-      "day": "2026-08-20",
-      "source": "data/daily_reports/capital_2026-08-20.html",
+      "day": "2026-08-21",
+      "source": "data/daily_reports/capital_2026-08-21.html",
       "url": "https://kaydeep0.github.io/ibkr-digests/capital/",
-      "archive_url": "https://kaydeep0.github.io/ibkr-digests/capital/2026-08-20/",
+      "archive_url": "https://kaydeep0.github.io/ibkr-digests/capital/2026-08-21/",
       "archive_days": [
+        "2026-08-21",
         "2026-08-20"
       ],
       "hub": {
